@@ -1,0 +1,641 @@
+openapi: 3.0.3
+info:
+  title: Antonina Katskel Professional API
+  description: |
+    **📘 Antonina Katskel Professional Profile API**
+    
+    Welcome to the **Antonina Professional API** — a comprehensive interface for accessing information about an experienced Product Design Lead and UX/UI Designer with extensive experience in design systems, accessibility, and team leadership.
+    
+    ## 👩‍💻 About Antonina
+    
+    Experienced Product Design Lead with 10+ years in UX/UI design, specializing in design systems, accessibility, and cross-functional team leadership. Currently exploring new opportunities after a strategic career transition period focused on skill development and market research.
+    
+    ### 🎯 Core Expertise
+    - **Product Design Leadership**: Team management, design strategy, stakeholder alignment
+    - **Design Systems**: Building scalable design systems and component libraries
+    - **UX/UI Design**: User research, interaction design, usability testing
+    - **Accessibility**: WCAG compliance, inclusive design practices
+    - **Mentoring**: Teaching and developing design talent
+    
+    ### 🛠️ Technical Stack
+    - **Design Tools**: Figma, Sketch, Adobe Creative Suite
+    - **Analytics & Research**: Google Analytics, user testing tools
+    - **Development**: HTML/CSS, design tokens, component libraries
+    - **Project Management**: Agile methodologies, cross-functional collaboration
+    - **Marketing**: Brand design, content strategy, marketing campaigns
+    
+    ### 🌍 Work Approach
+    - **User-Centered**: Always prioritize user needs and accessibility
+    - **Data-Driven**: Use analytics and research to inform design decisions
+    - **Collaborative**: Excel in cross-functional team environments
+    - **Systems Thinking**: Build scalable, maintainable design solutions
+    
+    ## 🏆 Professional Achievements
+    - Led design teams across multiple companies for 4+ years
+    - Built comprehensive design systems improving development efficiency
+    - Mentored dozens of designers transitioning into UX/UI careers
+    - 10+ years of hands-on design experience in B2B and enterprise products
+    
+    Connect with me to discuss design leadership, systems thinking, and building user-centered products.
+  version: 2.5.0
+  contact:
+    name: Antonina Katskel
+    email: antonina.katskel@gmail.com
+    url: https://www.linkedin.com/in/tonyakatskel/
+  license:
+    name: Professional Portfolio
+    url: https://github.com/cropqa
+
+servers:
+  - url: https://antonina-katskel.github.io/api
+    description: Professional Portfolio API
+  - url: https://api.antonina-katskel.dev
+    description: Professional Services Endpoint
+
+tags:
+  - name: Profile
+    description: Professional profile and contact information
+  - name: Experience
+    description: Work experience and employment history
+  - name: Skills
+    description: Technical skills and competencies
+  - name: Education
+    description: Educational background and qualifications
+  - name: Services
+    description: Professional services and consulting offerings
+
+paths:
+  /profile:
+    get:
+      tags:
+        - Profile
+      summary: Get professional profile
+      description: Returns comprehensive professional profile including current status, location, and key information
+      responses:
+        '200':
+          description: Professional profile information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfessionalProfile'
+              example:
+                name: "Antonina Katskel"
+                title: "Product Design Lead | UX/UI Designer"
+                current_status: "Career Transition - Open to New Opportunities"
+                location: "Minsk, Belarus (Open to Remote)"
+                availability: "Available for new opportunities"
+                total_experience_years: 10
+                leadership_experience_years: 4
+                specializations:
+                  - "Product Design Leadership"
+                  - "Design Systems"
+                  - "UX/UI Design"
+                  - "Accessibility & Inclusive Design"
+                  - "Team Mentoring & Development"
+                languages:
+                  - language: "English"
+                    level: "Professional working proficiency"
+                  - language: "Russian"
+                    level: "Native"
+                  - language: "Belarusian"
+                    level: "Native"
+                linkedin: "https://www.linkedin.com/in/tonyakatskel/"
+                portfolio: "https://github.com/cropqa"
+                career_transition_period: "Dec 2022 - Present"
+                transition_focus: "Exploring new opportunities and market trends"
+
+  /experience:
+    get:
+      tags:
+        - Experience
+      summary: Get work experience
+      description: Returns detailed work experience including positions, companies, and achievements
+      parameters:
+        - name: type
+          in: query
+          description: Filter by experience type
+          schema:
+            type: string
+            enum: [all, leadership, design, mentoring, full-time, part-time]
+            default: all
+        - name: company
+          in: query
+          description: Filter by specific company
+          schema:
+            type: string
+            enum: [Gurtam, Altoros, Netcracker, UXMindSchool]
+      responses:
+        '200':
+          description: Work experience details
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WorkExperience'
+              example:
+                - position: "Career Transition"
+                  company: "Independent"
+                  type: "career-break"
+                  duration: "Dec 2022 - Present"
+                  duration_months: 32
+                  location: "Remote"
+                  description: "Strategic career break focused on skill development, market research, and exploring new opportunities in design and technology"
+                  activities:
+                    - "Researching emerging trends in UX/UI and product design"
+                    - "Developing technical writing and documentation skills"
+                    - "Exploring API documentation and developer experience"
+                    - "Building personal projects and portfolio updates"
+                  skills_developed: ["Technical Writing", "API Documentation", "Market Research"]
+                - position: "Product Design Lead"
+                  company: "Gurtam"
+                  type: "full-time"
+                  duration: "Sep 2021 - Dec 2022"
+                  duration_months: 16
+                  location: "Minsk, Belarus"
+                  description: "Led product design initiatives for telematics and IoT solutions"
+                  responsibilities:
+                    - "Led design team and established design processes"
+                    - "Implemented accessibility standards and inclusive design practices"
+                    - "Built comprehensive design system for product consistency"
+                    - "Mentored junior designers and conducted design reviews"
+                    - "Collaborated with product managers and engineering teams"
+                  skills: ["DesignOps", "Accessibility", "Google Analytics", "Leadership", "Mentoring", "Design Systems"]
+                  achievements:
+                    - "Implemented company-wide design system"
+                    - "Improved product accessibility compliance"
+                    - "Established design team processes and workflows"
+                - position: "UI/UX & Brand Design Lead"
+                  company: "Altoros"
+                  type: "full-time"
+                  duration: "Sep 2019 - Sep 2021"
+                  duration_months: 25
+                  location: "Minsk, Belarus"
+                  description: "Led design team for enterprise software solutions and client projects"
+                  responsibilities:
+                    - "Managed design team and coordinated with multiple stakeholders"
+                    - "Conducted usability testing and user research"
+                    - "Developed content strategy and marketing materials"
+                    - "Implemented agile design processes"
+                  skills: ["Marketing", "DesignOps", "Google Analytics", "Leadership", "Usability Testing", "Content strategy", "Agile Project Management", "Mentoring", "Design Systems"]
+                  achievements:
+                    - "Established design operations framework"
+                    - "Led successful rebranding initiatives"
+                    - "Improved user satisfaction metrics through research"
+                - position: "UI/UX Design Mentor"
+                  company: "UX Mind School — Школа дизайна"
+                  type: "part-time"
+                  duration: "Apr 2019 - Jun 2020"
+                  duration_months: 15
+                  location: "Remote"
+                  description: "Mentored aspiring UX/UI designers transitioning into the field"
+                  responsibilities:
+                    - "Conducted individual and group mentoring sessions"
+                    - "Reviewed and provided feedback on student projects"
+                    - "Developed curriculum and educational materials"
+                  skills: ["Leadership", "Mentoring"]
+                  achievements:
+                    - "Successfully mentored 20+ designers"
+                    - "Developed comprehensive design education materials"
+                - position: "Product UI/UX Designer"
+                  company: "Netcracker Technology"
+                  type: "full-time"
+                  duration: "Apr 2019 - Sep 2019"
+                  duration_months: 6
+                  location: "Minsk, Belarus"
+                  description: "Designed user interfaces for telecommunications software solutions"
+                  skills: ["Accessibility", "Leadership", "User Interface Design", "Interaction Design", "Design Systems"]
+                - position: "UI/UX & Graphic Designer"
+                  company: "Altoros"
+                  type: "full-time"
+                  duration: "Dec 2010 - Apr 2019"
+                  duration_months: 101
+                  location: "Minsk, Belarus"
+                  description: "Long-term role developing expertise in web design, marketing, and user interface design"
+                  skills: ["Web Design", "Marketing", "User Interface Design", "Interaction Design"]
+                  note: "8+ years of foundational design experience building expertise"
+
+  /skills:
+    get:
+      tags:
+        - Skills
+      summary: Get skills and competencies
+      description: Returns detailed breakdown of technical and soft skills with experience levels
+      parameters:
+        - name: category
+          in: query
+          description: Filter skills by category
+          schema:
+            type: string
+            enum: [all, design, leadership, technical, tools, soft-skills]
+            default: all
+      responses:
+        '200':
+          description: Skills breakdown
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SkillsProfile'
+              example:
+                design_skills:
+                  - skill: "Design Systems"
+                    level: "Expert"
+                    years_experience: 4
+                    description: "Built comprehensive design systems across multiple companies"
+                  - skill: "UI/UX Design"
+                    level: "Expert"
+                    years_experience: 10
+                    description: "Extensive experience in user interface and user experience design"
+                  - skill: "Accessibility"
+                    level: "Advanced"
+                    years_experience: 3
+                    description: "WCAG compliance and inclusive design practices"
+                  - skill: "Interaction Design"
+                    level: "Advanced"
+                    years_experience: 8
+                    description: "Creating intuitive user interactions and workflows"
+                leadership_skills:
+                  - skill: "Team Leadership"
+                    level: "Advanced"
+                    years_experience: 4
+                    description: "Led design teams at multiple organizations"
+                  - skill: "Mentoring"
+                    level: "Expert"
+                    years_experience: 5
+                    description: "Mentored 20+ designers through career transitions"
+                  - skill: "DesignOps"
+                    level: "Advanced"
+                    years_experience: 3
+                    description: "Established design processes and operational frameworks"
+                technical_skills:
+                  - skill: "Google Analytics"
+                    level: "Intermediate"
+                    years_experience: 4
+                    description: "Data analysis for design decision making"
+                  - skill: "Usability Testing"
+                    level: "Advanced"
+                    years_experience: 5
+                    description: "User research and testing methodologies"
+                  - skill: "Content Strategy"
+                    level: "Intermediate"
+                    years_experience: 3
+                    description: "Content planning and information architecture"
+                tools:
+                  design: ["Figma", "Sketch", "Adobe Creative Suite", "Principle", "InVision"]
+                  analytics: ["Google Analytics", "Hotjar", "Mixpanel"]
+                  development: ["HTML/CSS", "Design Tokens", "Component Libraries"]
+                  project_management: ["Jira", "Confluence", "Slack", "Miro"]
+                  prototyping: ["Figma", "Principle", "Framer"]
+                soft_skills:
+                  - "Cross-functional collaboration"
+                  - "Stakeholder management"
+                  - "Agile project management"
+                  - "Strategic thinking"
+                  - "Problem-solving"
+                  - "Communication and presentation"
+
+  /education:
+    get:
+      tags:
+        - Education
+      summary: Get educational background
+      description: Returns information about educational qualifications and background
+      responses:
+        '200':
+          description: Educational background
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Education'
+              example:
+                degree: "Engineer's degree"
+                field_of_study: "Industrial and Product Design"
+                institution: "Belarusian National Technical University"
+                duration: "2008 - 2016"
+                duration_years: 8
+                location: "Minsk, Belarus"
+                description: "Comprehensive engineering education with focus on industrial and product design principles"
+                relevant_coursework:
+                  - "Design Theory and Methodology"
+                  - "Human Factors in Design"
+                  - "Materials and Manufacturing"
+                  - "Technical Drawing and CAD"
+                  - "Product Development Process"
+                skills_acquired:
+                  - "Design thinking methodology"
+                  - "Technical problem solving"
+                  - "User-centered design principles"
+                  - "Manufacturing and materials knowledge"
+
+  /services:
+    get:
+      tags:
+        - Services
+      summary: Get available services
+      description: Returns information about professional services and consulting offerings
+      responses:
+        '200':
+          description: Available professional services
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Service'
+              example:
+                - service: "Design System Strategy & Implementation"
+                  description: "End-to-end design system creation including component library, design tokens, and documentation"
+                  deliverables:
+                    - "Design system audit and strategy"
+                    - "Component library development"
+                    - "Design tokens and style guide"
+                    - "Implementation guidelines for developers"
+                  timeline: "8-12 weeks"
+                  ideal_for: "Companies looking to scale their design consistency and development efficiency"
+                - service: "UX/UI Design Leadership Consulting"
+                  description: "Strategic design leadership for teams and organizations"
+                  deliverables:
+                    - "Design team assessment and recommendations"
+                    - "Design process optimization"
+                    - "Team structure and workflow improvements"
+                    - "Design operations framework"
+                  timeline: "4-8 weeks"
+                  ideal_for: "Companies scaling their design teams or improving design processes"
+                - service: "Accessibility & Inclusive Design Audit"
+                  description: "Comprehensive accessibility review and improvement recommendations"
+                  deliverables:
+                    - "WCAG compliance audit"
+                    - "Accessibility improvement roadmap"
+                    - "Team training on inclusive design"
+                    - "Implementation guidelines"
+                  timeline: "3-6 weeks"
+                  ideal_for: "Products needing accessibility compliance or inclusive design improvements"
+                - service: "Design Mentoring & Team Development"
+                  description: "Individual or team mentoring for design skill development"
+                  deliverables:
+                    - "Personalized learning plans"
+                    - "Regular mentoring sessions"
+                    - "Portfolio review and feedback"
+                    - "Career development guidance"
+                  timeline: "Ongoing"
+                  ideal_for: "Individual designers or teams looking to advance their skills"
+
+  /availability:
+    get:
+      tags:
+        - Profile
+      summary: Check availability status
+      description: Returns current availability for new projects and collaborations
+      responses:
+        '200':
+          description: Current availability status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Availability'
+              example:
+                status: "Available"
+                current_capacity: "Open to new opportunities"
+                career_transition_status: "Actively exploring new roles and projects"
+                preferred_engagement:
+                  - "Full-time design leadership roles"
+                  - "Senior product design positions"
+                  - "Design consulting projects"
+                  - "Mentoring and educational opportunities"
+                location_preferences:
+                  - "Remote (preferred)"
+                  - "Minsk, Belarus"
+                  - "European time zones"
+                work_style: "Remote-first, collaborative"
+                response_time: "Within 24 hours"
+                notice_period: "Available immediately"
+
+components:
+  schemas:
+    ProfessionalProfile:
+      type: object
+      required:
+        - name
+        - title
+        - current_status
+        - location
+        - total_experience_years
+      properties:
+        name:
+          type: string
+        title:
+          type: string
+        current_status:
+          type: string
+        location:
+          type: string
+        availability:
+          type: string
+        total_experience_years:
+          type: integer
+        leadership_experience_years:
+          type: integer
+        specializations:
+          type: array
+          items:
+            type: string
+        languages:
+          type: array
+          items:
+            type: object
+            properties:
+              language:
+                type: string
+              level:
+                type: string
+        linkedin:
+          type: string
+          format: uri
+        portfolio:
+          type: string
+          format: uri
+        career_transition_period:
+          type: string
+        transition_focus:
+          type: string
+
+    WorkExperience:
+      type: object
+      properties:
+        position:
+          type: string
+        company:
+          type: string
+        type:
+          type: string
+          enum: [full-time, part-time, contract, freelance, career-break]
+        duration:
+          type: string
+        duration_months:
+          type: integer
+        location:
+          type: string
+        description:
+          type: string
+        responsibilities:
+          type: array
+          items:
+            type: string
+        activities:
+          type: array
+          items:
+            type: string
+        skills:
+          type: array
+          items:
+            type: string
+        skills_developed:
+          type: array
+          items:
+            type: string
+        achievements:
+          type: array
+          items:
+            type: string
+        note:
+          type: string
+
+    SkillsProfile:
+      type: object
+      properties:
+        design_skills:
+          type: array
+          items:
+            type: object
+            properties:
+              skill:
+                type: string
+              level:
+                type: string
+                enum: [Beginner, Intermediate, Advanced, Expert]
+              years_experience:
+                type: integer
+              description:
+                type: string
+        leadership_skills:
+          type: array
+          items:
+            type: object
+            properties:
+              skill:
+                type: string
+              level:
+                type: string
+                enum: [Beginner, Intermediate, Advanced, Expert]
+              years_experience:
+                type: integer
+              description:
+                type: string
+        technical_skills:
+          type: array
+          items:
+            type: object
+            properties:
+              skill:
+                type: string
+              level:
+                type: string
+                enum: [Beginner, Intermediate, Advanced, Expert]
+              years_experience:
+                type: integer
+              description:
+                type: string
+        tools:
+          type: object
+          properties:
+            design:
+              type: array
+              items:
+                type: string
+            analytics:
+              type: array
+              items:
+                type: string
+            development:
+              type: array
+              items:
+                type: string
+            project_management:
+              type: array
+              items:
+                type: string
+            prototyping:
+              type: array
+              items:
+                type: string
+        soft_skills:
+          type: array
+          items:
+            type: string
+
+    Education:
+      type: object
+      properties:
+        degree:
+          type: string
+        field_of_study:
+          type: string
+        institution:
+          type: string
+        duration:
+          type: string
+        duration_years:
+          type: integer
+        location:
+          type: string
+        description:
+          type: string
+        relevant_coursework:
+          type: array
+          items:
+            type: string
+        skills_acquired:
+          type: array
+          items:
+            type: string
+
+    Service:
+      type: object
+      properties:
+        service:
+          type: string
+        description:
+          type: string
+        deliverables:
+          type: array
+          items:
+            type: string
+        timeline:
+          type: string
+        ideal_for:
+          type: string
+
+    Availability:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [Available, Partially Available, Fully Booked]
+        current_capacity:
+          type: string
+        career_transition_status:
+          type: string
+        preferred_engagement:
+          type: array
+          items:
+            type: string
+        location_preferences:
+          type: array
+          items:
+            type: string
+        work_style:
+          type: string
+        response_time:
+          type: string
+        notice_period:
+          type: string
